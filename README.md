@@ -22,7 +22,11 @@ This repository contains Anki decks I use for continuous learning, covering:
 
 - 100 cards
 - Topics: Data structures, functions, classes, exceptions, file I/O, JSON, testing, decorators, virtualenv, and more.
-- Format: `python_intermediate_deck.txt` (Anki import format)
+
+### CKAD Deck v1.0
+
+- 100 cards
+- Topics: Kubernetes objects, YAML patterns, kubectl commands, deployments, services, ingress, storage, config, probes, scheduling, debugging & cluster architecture
 
 ---
 
