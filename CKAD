@@ -1,0 +1,101 @@
+#separator:tab
+#html:true
+What is Kubernetes?	Kubernetes is an open-source <b>container orchestrator</b> for deploying containerized applications.
+What is the smallest deployable unit in Kubernetes?	<b>Pod</b>
+How to create a Pod imperatively?	<code>kubectl run my-pod --image=nginx</code>
+What is a Deployment?	A controller that manages ReplicaSets to maintain desired state of Pods.
+How to create a deployment with nginx image and 3 replicas?	<code>kubectl create deployment my-dep --image=nginx --replicas=3</code>
+How to scale deployment to 5 replicas?	<code>kubectl scale deployment my-dep --replicas=5</code>
+How to expose a deployment as ClusterIP service?	<code>kubectl expose deployment my-dep --port=80 --target-port=80</code>
+What is the default service type in Kubernetes?	<code>ClusterIP</code>
+What service type allows external access via a static port on each node?	<code>NodePort</code>
+What service type provisions a cloud load balancer?	<code>LoadBalancer</code>
+How to create Namespace?	<code>kubectl create namespace my-namespace</code>
+How to switch namespaces temporarily?	<code>kubectl config set-context --current --namespace=my-namespace</code>
+How to get Pods across all namespaces?	<code>kubectl get pods --all-namespaces</code>
+What is a ConfigMap?	A Kubernetes object that stores non-sensitive config data as key-value pairs.
+How to create ConfigMap from file?	<code>kubectl create configmap my-cm --from-file=config.txt</code>
+How to create Secret from literal key-value?	<code>kubectl create secret generic my-secret --from-literal=password=123456</code>
+What is the difference between ConfigMap and Secret?	<ul><li>ConfigMap: non-sensitive config data</li><li>Secret: sensitive data (passwords, tokens)</li></ul>
+How to mount ConfigMap as environment variables?	Use <code>envFrom: configMapRef: name: my-cm</code> inside pod spec.
+How to mount Secret as environment variables?	Use <code>envFrom: secretRef: name: my-secret</code> inside pod spec.
+What is a PersistentVolume (PV)?	A cluster resource for durable storage.
+How does a Pod request persistent storage?	By claiming a <b>PersistentVolumeClaim (PVC)</b>.
+What YAML section defines volumes in Pod?	<code>spec.volumes</code>
+What YAML section mounts volumes into containers?	<code>spec.containers.volumeMounts</code>
+How to create PVC imperatively?	<code>kubectl create pvc my-pvc --storage=1Gi</code>
+How to describe a Pod?	<code>kubectl describe pod my-pod</code>
+How to get logs from a Pod?	<code>kubectl logs my-pod</code>
+How to stream logs from a running Pod?	<code>kubectl logs -f my-pod</code>
+How to exec into a running Pod interactively?	<code>kubectl exec -it my-pod -- /bin/sh</code>
+How to generate Deployment YAML using dry-run?	<code>kubectl create deployment nginx --image=nginx --dry-run=client -o yaml</code>
+What is apiVersion for Deployment?	<code>apps/v1</code>
+What is apiVersion for Pod?	<code>v1</code>
+How to delete a Pod?	<code>kubectl delete pod my-pod</code>
+How to apply changes from a YAML manifest?	<code>kubectl apply -f file.yaml</code>
+How to validate YAML manifest (client-side)?	<code>kubectl apply --dry-run=client -f file.yaml</code>
+How to patch Deployment to change replicas to 5?	<code>kubectl patch deployment my-dep --patch '{"spec":{"replicas":5}}'</code>
+How to rollout restart a deployment?	<code>kubectl rollout restart deployment my-dep</code>
+How to undo the last rollout?	<code>kubectl rollout undo deployment my-dep</code>
+How to check rollout status?	<code>kubectl rollout status deployment my-dep</code>
+How to create a Job imperatively?	<code>kubectl create job my-job --image=busybox -- echo hello</code>
+What is a CronJob?	A Kubernetes object to schedule recurring Jobs.
+Where to define schedule for CronJob?	<code>spec.schedule</code>
+What are liveness probes for?	Checking if container is still running.
+What are readiness probes for?	Checking if container is ready to receive traffic.
+How to configure HTTP liveness probe in YAML?	<pre><code>livenessProbe:<br>  httpGet:<br>    path: /healthz<br>    port: 8080</code></pre>
+How to configure resource requests for CPU?	<pre><code>resources:<br>  requests:<br>    cpu: "500m"</code></pre>
+How to configure resource limits for memory?	<pre><code>resources:<br>  limits:<br>    memory: "512Mi"</code></pre>
+What is the purpose of initContainers?	Containers that run before app containers start.
+Where are initContainers defined?	<code>spec.initContainers</code>
+How to mount Secret as a file into container?	Use <code>volumes: secret:</code> and mount to <code>volumeMounts:</code>
+How to scale StatefulSet?	<code>kubectl scale statefulset my-app --replicas=3</code>
+What are the 4 main service types in Kubernetes?	<ul><li>ClusterIP</li><li>NodePort</li><li>LoadBalancer</li><li>ExternalName</li></ul>
+What is the default service type?	<code>ClusterIP</code>
+When should you use NodePort?	When you need simple external access to service through a static port.
+What does ExternalName service do?	Maps service to external DNS name.
+What is an Ingress resource?	Object that manages HTTP/S external access to cluster services.
+Where are Ingress rules defined?	<code>spec.rules</code>
+Why Ingress uses apiVersion networking.k8s.io/v1?	Because it’s part of networking API group, not core API group.
+How does Ingress route traffic?	<ul><li>By Hostnames (e.g. <code>app.example.com</code>)</li><li>By URL paths (e.g. <code>/api</code>)</li></ul>
+How to get all resources with labels?	<code>kubectl get pods -l app=my-app</code>
+How to label a pod?	<code>kubectl label pod my-pod env=prod</code>
+How to remove a label?	<code>kubectl label pod my-pod env-</code>
+How to annotate a pod?	<code>kubectl annotate pod my-pod team=backend</code>
+How to get current context?	<code>kubectl config current-context</code>
+How to switch context?	<code>kubectl config use-context my-context</code>
+How to list all contexts?	<code>kubectl config get-contexts</code>
+What is the namespace reserved for Kubernetes core components?	<code>kube-system</code>
+What is Downward API?	Expose pod metadata as env vars or mounted files.
+How to access Pod name via Downward API?	<pre><code>env:<br>  - name: POD_NAME<br>    valueFrom:<br>      fieldRef:<br>        fieldPath: metadata.name</code></pre>
+What does nodeSelector do?	Assign pod to nodes matching label.
+Where is nodeSelector defined?	<code>spec.nodeSelector</code>
+What is nodeAffinity?	Advanced node selection rules using expressions.
+How to taint a node?	<code>kubectl taint nodes my-node key=value:NoSchedule</code>
+How to tolerate a taint?	<pre><code>tolerations:<br>- key: "key"<br>  operator: "Equal"<br>  value: "value"<br>  effect: "NoSchedule"</code></pre>
+What is a headless Service?	Service with <code>clusterIP: None</code>
+What is a StatefulSet?	Manages stateful applications with stable identity, persistent storage & ordered startup.
+Where to define PersistentVolumeClaims for StatefulSet?	<code>volumeClaimTemplates</code>
+What is a DaemonSet?	Ensures one pod replica runs on each node.
+How to create a ServiceAccount?	<code>kubectl create serviceaccount my-sa</code>
+How to assign ServiceAccount to pod?	<code>spec.serviceAccountName: my-sa</code>
+How to get cluster resources usage?	<code>kubectl top pods</code>
+What is HPA?	HorizontalPodAutoscaler: automatically scales replicas based on CPU/memory usage.
+How to create HPA?	<code>kubectl autoscale deployment my-dep --min=2 --max=5 --cpu-percent=80</code>
+How to check available API resources?	<code>kubectl api-resources</code>
+How to delete completed pods automatically in Jobs?	Use <code>ttlSecondsAfterFinished</code> in Job spec.
+How to delete all pods with a label selector?	<code>kubectl delete pods -l app=my-app</code>
+How to get detailed pod info?	<code>kubectl describe pod my-pod</code>
+How to show YAML for resource?	<code>kubectl get deployment my-dep -o yaml</code>
+How to replace a resource?	<code>kubectl replace -f file.yaml</code>
+How to run temporary pod for debugging?	<code>kubectl run tmp-shell --rm -i --tty --image=busybox -- sh</code>
+What is a ReplicaSet?	Controller that ensures specified number of pod replicas running at any time.
+What is apiVersion for ReplicaSet?	<code>apps/v1</code>
+How do pods inside a Deployment get replicated?	Deployment → ReplicaSet → Pods.
+How to get events for troubleshooting?	<code>kubectl get events</code>
+What is kubectl apply used for?	Declaratively create or update resources.
+What is kubectl replace used for?	Imperatively replace the entire resource definition.
+What is kubelet?	Agent running on nodes managing pods assigned to node.
+What is kube-proxy?	Handles networking & load-balancing to services.
+What is etcd?	Distributed key-value store for cluster state.
+How to create multiple resources from a directory?	<code>kubectl apply -f ./manifests/</code>
