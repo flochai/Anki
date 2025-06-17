@@ -1,0 +1,100 @@
+What is the difference between a list and a tuple in Python?	LIST: mutable, TUPLE: immutable
+How do you create a set in Python?	my_set = {1, 2, 3}  OR  my_set = set([1, 2, 3])
+Write a list comprehension that creates a list of squares from 1 to 5.	squares = [x**2 for x in range(1, 6)]
+How do you define a function with default arguments?	def greet(name, language='English'): print(f"Hello {name} ({language})")
+What does *args and **kwargs do?	*args collects extra positional arguments as tuple; **kwargs collects extra keyword arguments as dict
+How do you create a class with an __init__ constructor?	class Person: def __init__(self, name): self.name = name
+What is class inheritance in Python?	A child class inherits methods and properties from the parent class.
+How do you handle exceptions in Python?	try: # code except Exception as e: print(e)
+How do you raise an exception?	raise ValueError("Invalid input")
+What is the purpose of 'finally' in try-except?	Always runs after try-except, even if exception occurs.
+How do you read a file line by line?	with open('file.txt') as f: for line in f: print(line)
+How do you write to a file?	with open('file.txt', 'w') as f: f.write("text")
+What is a context manager?	Object that defines __enter__ and __exit__ methods to manage resources.
+How do you open a file safely in Python?	with open('file.txt') as f: # safe context manager
+What does enumerate() do?	Returns index and value when looping: for i, val in enumerate(my_list):
+What does zip() do?	Combines iterables into tuples: for a, b in zip(list1, list2):
+How do you create a dictionary comprehension?	{key: value for key, value in iterable}
+How do you reverse a list?	my_list[::-1] or my_list.reverse()
+How do you sort a list?	my_list.sort() or sorted(my_list)
+What does lambda create?	Anonymous functions: lambda x: x + 1
+How do you write a simple decorator?	def my_decorator(func): def wrapper(): print("Before"); func(); print("After"); return wrapper
+What does yield do?	Creates a generator that produces values lazily.
+How do you create a generator expression?	(x**2 for x in range(5))
+How do you check the Python version?	python --version
+How do you create a virtual environment?	python3 -m venv venv
+What is a Python module?	A Python file containing definitions and statements.
+How do you import a module?	import module_name
+How do you import only specific function from module?	from module import function
+How do you list all attributes of a module?	dir(module)
+What is __name__ == "__main__" used for?	Checks if file is run directly vs imported.
+How do you install a package using pip?	pip install package_name
+How do you list installed pip packages?	pip list
+How do you upgrade pip?	python -m pip install --upgrade pip
+How do you uninstall a package?	pip uninstall package_name
+What is the purpose of __init__.py?	Makes a directory a Python package.
+What is a docstring?	A string that documents a function/class/module.
+How do you define a docstring?	""" This is a docstring """
+How do you get help on a function?	help(function)
+How do you see function signature in IDE?	Usually by hovering or using autocomplete.
+How do you check type of a variable?	type(variable)
+How do you check object instance?	isinstance(obj, Class)
+How do you convert string to integer?	int("123")
+How do you convert integer to string?	str(123)
+How do you handle division by zero safely?	try: result = a/b except ZeroDivisionError: result = None
+What is a list slice?	Extracting part of list: my_list[1:4]
+How do you get length of a list?	len(my_list)
+How do you append to a list?	my_list.append(item)
+How do you extend a list?	my_list.extend([item1, item2])
+How do you remove item from list?	my_list.remove(item)
+How do you delete item by index?	del my_list[index]
+What is a dictionary in Python?	Key-value mapping object.
+How do you create a dictionary?	my_dict = {"key": "value"}
+How do you access a dictionary value?	my_dict["key"]
+How do you add a key-value pair to a dictionary?	my_dict["new_key"] = "value"
+How do you remove a key from dictionary?	del my_dict["key"]
+How do you get all keys from dictionary?	my_dict.keys()
+How do you get all values from dictionary?	my_dict.values()
+How do you loop through dictionary items?	for key, value in my_dict.items():
+How do you check if key exists in dictionary?	"key" in my_dict
+How do you safely get value with default if key not exists?	my_dict.get("key", default_value)
+What is a set?	Collection of unique elements.
+How do you add element to a set?	my_set.add(item)
+How do you remove element from set?	my_set.remove(item)
+How do you check if item exists in set?	item in my_set
+What is set union?	my_set.union(other_set)
+What is set intersection?	my_set.intersection(other_set)
+What is set difference?	my_set.difference(other_set)
+What does sorted() return?	A new sorted list.
+What is list comprehension syntax?	[expression for item in iterable if condition]
+How do you flatten a list of lists?	[item for sublist in lists for item in sublist]
+What is a shallow copy?	Copy where inner objects are still shared: list2 = list1[:]
+What is a deep copy?	Full copy with independent objects: copy.deepcopy(list)
+How do you import deepcopy?	from copy import deepcopy
+What is None in Python?	Null value (absence of value)
+What is a boolean in Python?	True or False values
+How do you create a multi-line string?	Use triple quotes: """multi-line string"""
+What is string formatting using f-strings?	f"Hello {name}"
+How do you convert string to lowercase?	my_string.lower()
+How do you convert string to uppercase?	my_string.upper()
+How do you strip whitespace from string?	my_string.strip()
+How do you replace text in string?	my_string.replace("old", "new")
+How do you split a string?	my_string.split(separator)
+How do you join list of strings?	separator.join(my_list)
+What does 'pass' do?	Placeholder statement that does nothing.
+How do you define a constant (convention)?	Use ALL_CAPS: MY_CONSTANT = 42
+How do you exit a loop early?	break
+How do you skip to next loop iteration?	continue
+What is while loop syntax?	while condition: # code
+What is the difference between is and ==?	is checks identity, == checks value equality.
+How do you handle multiple exceptions?	except (Error1, Error2) as e:
+How do you define a custom exception?	class MyError(Exception): pass
+How do you import JSON module?	import json
+How do you load JSON from string?	json.loads(json_string)
+How do you dump object to JSON string?	json.dumps(obj)
+How do you read JSON from file?	with open("file.json") as f: data = json.load(f)
+How do you write JSON to file?	with open("file.json", "w") as f: json.dump(obj, f)
+What is list unpacking?	a, b = [1, 2]
+How do you swap variables?	a, b = b, a
+How do you write a simple unit test?	import unittest; class Test(unittest.TestCase): def test_add(self): self.assertEqual(add(2,3), 5)
+How do you run pytest?	pytest test_file.py
